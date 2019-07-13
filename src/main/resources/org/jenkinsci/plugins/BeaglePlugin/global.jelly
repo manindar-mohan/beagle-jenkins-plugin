@@ -2,7 +2,7 @@
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
   <f:section title="Beagle Security">
     <f:entry title="User Token" field="gusertoken">
-      <f:textbox />
+      <f:password />
     </f:entry>
   </f:section>
 </j:jelly>

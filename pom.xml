@@ -7,50 +7,57 @@
         <version>2.33</version>
         <relativePath />
     </parent>
-    <artifactId>Beagle</artifactId>
-    <version>0</version>
+    <artifactId>beagle-security</artifactId>
+    <version>1.0</version>
     <packaging>hpi</packaging>
     <properties>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <skipTests>true</skipTests>
+        <pmd.skip>true</pmd.skip>
+        <findbugs.skip>true</findbugs.skip>
         <jenkins.version>2.7.3</jenkins.version>
     </properties>
     <name>Beagle Security</name>
-    <description>This plugin will trigger Beagle Security Scan</description>
+    <description>This plugin will trigger Beagle Security test</description>
+    <!-- Update WIKI URL
     <url>https://wiki.jenkins-ci.org/display/JENKINS/TODO+Plugin</url>
+    -->
+    <developers>
+        <developer>
+            <id>rejah</id>
+            <name>Rejah Rehim</name>
+            <email>rejah.rehim@gmail.com</email>
+        </developer>
+    </developers>
     <licenses>
         <license>
             <name>MIT License</name>
             <url>http://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
-    <!-- Assuming you want to host on @jenkinsci:
-    <scm>
+    <!-- Update(uncomment) this after pushing plugin to jenkins
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
     </scm>
     -->
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-    <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.5.9</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>4.4.11</version>
-    </dependency>
-<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.5</version>
-</dependency>
-
-
-
-</dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+    </dependencies>
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>

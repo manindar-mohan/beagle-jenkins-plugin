@@ -43,7 +43,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.kohsuke.stapler.export.Exported;
-
+import hudson.util.Secret;
 
 public class BeaglePlugin extends Builder implements SimpleBuildStep {
 
@@ -51,9 +51,9 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
 	String utoken;
 
 	@DataBoundConstructor
-	public BeaglePlugin(String apptoken,String usertoken) {
-		this.atoken = apptoken;
-		this.utoken = usertoken;
+	public BeaglePlugin(Secret apptoken,Secret usertoken) {
+		this.atoken = apptoken.toString();
+		this.utoken = usertoken.toString();
 	}
 
 	@Exported
@@ -77,8 +77,8 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
        		listener.getLogger().println("Application Token not Provided! Refer Help File");
        		flag = false;
        	}
-      	if (utoken.isEmpty()) {
-      		if (gtoken.isEmpty()) {
+      	if (utoken.isEmpty() || utoken == null) {
+      		if (gtoken.isEmpty() || gtoken == null) {
       			listener.getLogger().println("User Token not provided by globally or locally! Refer Help");
        			flag = false;
       		} else {
@@ -86,27 +86,32 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
       			utoken = gtoken;
       		}
        	}
-		if(flag) {
+       	if(flag) {
 			String body = "{\"user_token\":\""+utoken+"\",\"application_token\":\""+atoken+"\"}";
 			HttpClient c = HttpClientBuilder.create().build();   
-			HttpPost p = new HttpPost("https://api.beaglesecurity.com/v1/test/start/");        
+			HttpPost p = new HttpPost("https://beagle-tvm-api.appfabs.com/v1/test/start/");        
 			p.setEntity((HttpEntity) new StringEntity(body,ContentType.create("application/json")));
 	        HttpResponse r = null;
 			try {
 				String str = null;
 				r = c.execute(p);
-				BufferedReader rd = new BufferedReader(new InputStreamReader(r.getEntity().getContent()));
-				str = rd.readLine();
-				JsonParser parser = new JsonParser();
-				if (str != null) {
-					JsonElement jsonel = parser.parse(str);
-					JsonObject obj = jsonel.getAsJsonObject();
-					listener.getLogger().println("Status :" + obj.get("status"));
-					listener.getLogger().println("Message :" + obj.get("message"));
-					if(guflag) {
-						utoken = "";
-						guflag = false;
-					} 
+				int statcode = r.getStatusLine().getStatusCode();
+				if(statcode == 200 || statcode == 400) {
+					BufferedReader rd = new BufferedReader(new InputStreamReader(r.getEntity().getContent()));
+					str = rd.readLine();
+					JsonParser parser = new JsonParser();
+					if (str != null) {
+						JsonElement jsonel = parser.parse(str);
+						JsonObject obj = jsonel.getAsJsonObject();
+						listener.getLogger().println("Status :" + obj.get("status"));
+						listener.getLogger().println("Message :" + obj.get("message"));
+						if(guflag) {
+							utoken = "";
+							guflag = false;
+						} 
+					}
+				} else  {
+					listener.getLogger().println("Error Code :"+statcode);
 				}
 
 			} catch (IOException e) {
