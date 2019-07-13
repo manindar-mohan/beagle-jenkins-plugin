@@ -89,7 +89,7 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
        	if(flag) {
 			String body = "{\"user_token\":\""+utoken+"\",\"application_token\":\""+atoken+"\"}";
 			HttpClient c = HttpClientBuilder.create().build();   
-			HttpPost p = new HttpPost("https://beagle-tvm-api.appfabs.com/v1/test/start/");        
+			HttpPost p = new HttpPost("https://api.beaglesecurity.com/v1/test/start/");        
 			p.setEntity((HttpEntity) new StringEntity(body,ContentType.create("application/json")));
 	        HttpResponse r = null;
 			try {
