@@ -38,9 +38,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.json.simple.parser.ParseException;
 import org.apache.http.entity.ContentType;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -61,24 +58,15 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
 
 	@Exported
     public String getApptoken() {
-        /*StringBuffer sb = new StringBuffer(apptoken);
-        String maskedatoken = sb.replace(0,27,"XXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        return maskedatoken;*/
         return atoken;
     }
     @Exported
     public String getUsertoken() {
-       /* StringBuffer sb = new StringBuffer(apptoken);
-        String maskedatoken = sb.replace(0,27,"XXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        return maskedatoken;*/
-        return utoken;
+       return utoken;
     }
     @Exported
     public String getGusertoken() {
-       /* StringBuffer sb = new StringBuffer(apptoken);
-        String maskedatoken = sb.replace(0,27,"XXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        return maskedatoken;*/
-        return getDescriptor().getUtoken().toString();
+       return getDescriptor().getUtoken().toString();
     }
 
 	public void perform(Run<?,?> build, FilePath workspace, Launcher launcher, TaskListener listener) {
@@ -101,7 +89,7 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
 		if(flag) {
 			String body = "{\"user_token\":\""+utoken+"\",\"application_token\":\""+atoken+"\"}";
 			HttpClient c = HttpClientBuilder.create().build();   
-			HttpPost p = new HttpPost("https://beagle-tvm-api.appfabs.com/v1/test/start/");        
+			HttpPost p = new HttpPost("https://api.beaglesecurity.com/v1/test/start/");        
 			p.setEntity((HttpEntity) new StringEntity(body,ContentType.create("application/json")));
 	        HttpResponse r = null;
 			try {
@@ -141,10 +129,7 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
         }
         @Exported
     	public String getGusertoken() {
-       		/* StringBuffer sb = new StringBuffer(apptoken);
-        	String maskedatoken = sb.replace(0,27,"XXXXXXXXXXXXXXXXXXXXXXXXXXX")
-       		return maskedatoken;*/
-        	return gutoken;
+       		return gutoken;
     	}
 		public String getDisplayName() {
     		return "Trigger Beagle Penetration Testing";
