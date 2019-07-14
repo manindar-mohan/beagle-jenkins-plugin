@@ -1,6 +1,6 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
-  <f:section title="Beagle Security">
+  <f:section title="Beagle Security" field="beagle">
     <f:entry title="User Token" field="gusertoken">
       <f:password />
     </f:entry>
