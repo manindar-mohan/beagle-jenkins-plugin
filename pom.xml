@@ -8,7 +8,8 @@
         <relativePath />
     </parent>
     <artifactId>beagle-security</artifactId>
-    <version>1.0</version>
+    <groupId>io.jenkins.plugins</groupId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <properties>
         <maven.javadoc.skip>true</maven.javadoc.skip>
@@ -19,9 +20,7 @@
     </properties>
     <name>Beagle Security</name>
     <description>This plugin will trigger Beagle Security test</description>
-    <!-- Update WIKI URL
-    <url>https://wiki.jenkins-ci.org/display/JENKINS/TODO+Plugin</url>
-    -->
+    <url>https://wiki.jenkins.io/display/JENKINS/Beagle+Security+Plugin</url>
     <developers>
         <developer>
             <id>rejah</id>
@@ -35,12 +34,11 @@
             <url>http://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
-    <!-- <scm>
+    <scm>
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    </scm> -->
-    
+    </scm>
     <dependencies>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

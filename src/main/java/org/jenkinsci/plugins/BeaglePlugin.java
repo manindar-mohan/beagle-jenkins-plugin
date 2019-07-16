@@ -64,10 +64,6 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
     public String getUsertoken() {
        return utoken.toString();
     }
-    /*@Exported
-    public Secret getGusertoken() {
-       return getDescriptor().getUtoken();
-    }*/
 
 	public void perform(Run<?,?> build, FilePath workspace, Launcher launcher, TaskListener listener) {
        	Secret gtoken = getDescriptor().getUtoken();
@@ -87,8 +83,8 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
       		}
        	}
        	if(flag) {
-			HttpClient c = HttpClientBuilder.create().build();   
-			HttpPost p = new HttpPost("https://beagle-tvm-api.appfabs.com/v1/test/start/");        
+			HttpClient c = HttpClientBuilder.create().build();
+			HttpPost p = new HttpPost("https://api.beaglesecurity.com/v1/test/start/");
 			p.setEntity((HttpEntity) new StringEntity("{\"user_token\":\""+utoken.toString()+"\",\"application_token\":\""+atoken.toString()+"\"}",ContentType.create("application/json")));
 	        HttpResponse r = null;
 			try {
@@ -107,7 +103,7 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
 						if(guflag) {
 							utoken = null;
 							guflag = false;
-						} 
+						}
 					}
 				} else  {
 					listener.getLogger().println("Error Code :"+statcode);
@@ -116,7 +112,7 @@ public class BeaglePlugin extends Builder implements SimpleBuildStep {
 			} catch (IOException e) {
 			}
 		}
-		 
+
     }
 	public DescriptorImpl getDescriptor() {
         return (DescriptorImpl)super.getDescriptor();
