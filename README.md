@@ -8,7 +8,9 @@ Obtain Application Token and User Token from Beagle Dashboard
 
 ## What is Beagle?
 
-Beagle Security is a continuous vulnerability management platform which was born as the result of Appfabs Inc's research for an affordable penetration testing solution that can cater all kinds of enterprises. Started in 2016 Appfabs has carried out numerous Penetration Testing projects for various clients in different verticals. This experience along with a passionate set of white hat hackers acts as the backbone of the Beagle Security platform. 
+Beagle is an intelligent and holistic platform to make your applications hack-proof. The platform provides continuous and automated Penetration Testing (under human supervision) for organizations, so that they can always stay on top of the cyber threats
+
+In short, Beagle finds out how deep your system can be penetrated. Know it before the hackers do!
 
 * [Beagle Security](https://beaglesecurity.com/) - Visit for more Details!
 
